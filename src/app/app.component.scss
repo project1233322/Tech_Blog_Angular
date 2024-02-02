@@ -1,0 +1,33 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+.spacer{
+  flex: 1;
+}
+
+div {
+  mat-toolbar {
+    background: linear-gradient(90deg, #222b5c 0%, #80ece7 100%);
+    color: #f8f4f4;
+    position: relative;
+    backdrop-filter: blur(10px); // Adjust the blur radius for the foggy effect
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #fff; // White border color
+      opacity: 0.3; // Adjust opacity for the foggy effect
+    }
+  }
+}
+  
+
+.logo{
+ 
+font-family: 'Oleo Script', system-ui;
+font-size:xx-large;
+}

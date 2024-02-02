@@ -1,0 +1,52 @@
+.signup-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.my-dialog-container-class mat-dialog-container{
+  background-color: rgb(14, 85, 85) ;
+}
+
+
+.signup-button{
+  width: 100%;
+
+}
+
+.signup-card{
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.form-caption{
+  font-size: 24px;
+
+}
+
+.input-div{
+  margin-bottom: 6px;
+  width: 100%;
+}
+mat-form-field{
+  width: 100%;
+}
+form{
+  padding: 10px 40px 30px 40px;
+}
+
+
+// .signup-modal-container {
+//   transform: translate(-50%, -50%);
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+// }
+
+// .signup-modal-backdrop {
+//   background-color: rgba(0, 0, 0, 0.5);
+// }
+
+

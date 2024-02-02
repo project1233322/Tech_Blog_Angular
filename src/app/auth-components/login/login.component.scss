@@ -1,0 +1,39 @@
+.login-div{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding-top: 18px;
+    padding-bottom: 18px;
+   
+    border-radius: 10px;
+  }
+  
+  .login-button{
+    width: 100%;
+  
+  }
+  
+  .login-card{
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .form-caption{
+    font-size: 24px;
+  
+  }
+  
+  .input-div{
+    margin-bottom: 6px;
+    width: 100%;
+  }
+  mat-form-field{
+    width: 100%;
+  }
+  form{
+    padding: 10px 40px 30px 40px;
+  }
+  
+  

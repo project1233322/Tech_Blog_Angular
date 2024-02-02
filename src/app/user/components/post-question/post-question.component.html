@@ -1,0 +1,49 @@
+<div class="postQuestion-div">
+    <mat-card class="postQuestion-card">
+        <mat-card-content>
+            <h2 class="form-caption">Post Query</h2>
+            <form (ngsubmit)="onPostQuestion()">
+                <div class="input-div">
+                    <mat-form-field>
+                        <mat-label>Title</mat-label>
+                        <input matInput placeholder="Title" required>
+                    </mat-form-field>
+                </div>
+                <div class="input-div">
+                    <mat-form-field>
+                        <mat-label>Body</mat-label>
+                        <textarea matInput rows="6" placeholder="Body" required></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="input-div">
+                    <mat-form-field>
+                        <mat-label>Tags</mat-label>
+                        <mat-chip-grid #chipGrid aria-label="tag selection">
+                            @for (tag of tags; track tag) {
+                              <mat-chip-row (removed)="remove(tag)">
+                                {{tag}}
+                                <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                                  <mat-icon>cancel</mat-icon>
+                                </button>
+                              </mat-chip-row>
+                            }
+                          </mat-chip-grid>
+                          <input placeholder="New Tag..." #tagInput [formControl]="tagCtrl"
+                            [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            (matChipInputTokenEnd)="add($event)"/>
+                          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                            @for (tag of filteredTags | async; track tag) {
+                              <mat-option [value]="tag">{{tag}}</mat-option>
+                            }
+                          </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div>
+                  <button mat-raised-button color="primary" class="postQuestion-button" type="button" (click)="onPostQuestion()">Post Question</button>
+
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

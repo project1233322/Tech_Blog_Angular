@@ -1,0 +1,23 @@
+<div *ngIf="isUserLoggedIn; else loginSection">
+  <mat-toolbar color="primary">
+    <span>Techblog</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink='/user/dashboard' routerLinkActive="active">Dashboard</button>
+    <button mat-button routerLink='/user/question' routerLinkActive="active">Post Question</button>
+    <button mat-icon-button (click)="SignOut()" routerLinkActive="active">
+      <mat-icon fontIcon="logout"></mat-icon>
+    </button>
+  </mat-toolbar>
+</div>
+
+<ng-template #loginSection>
+  <mat-toolbar>
+    <span class="logo">TechBlog</span>
+    <span class="spacer"></span>
+    <button mat-button (click)="scrollToAboutUs()">About Us</button>
+    <button mat-button (click)="openLoginModal()">Sign in</button>
+    <button mat-button (click)="openSignupModal()">Sign up</button>
+  </mat-toolbar>
+</ng-template>
+
+<router-outlet></router-outlet>
