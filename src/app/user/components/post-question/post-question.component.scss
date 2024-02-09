@@ -1,8 +1,11 @@
+
 .postQuestion-div{
+  
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+   
   }
   
   .postQuestion-button{
@@ -27,9 +30,11 @@
   }
   mat-form-field{
     width: 100%;
+    
   }
   form{
     padding: 10px 40px 30px 40px;
+    
   }
   
   

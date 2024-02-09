@@ -1,0 +1,86 @@
+.question-card {
+
+
+    background: linear-gradient(90deg, #9c9ce6 0%, #ffffff 100%);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+    max-height: max-content;
+    margin-bottom: 40px;
+  
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.answer-section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+    margin-bottom: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.textarea-wrapper {
+    width: 100%;
+    /* Set the width of the textarea wrapper to 100% of its parent */
+}
+
+.area {
+    width: calc(100% - 24px);
+    /* Set the width of the textarea to 100% of its parent minus the scrollbar width */
+    resize: vertical;
+    /* Allow vertical resizing */
+    overflow-y: auto;
+    /* Enable vertical scrolling if content exceeds the height */
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.answer-card {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+    max-height: max-content;
+    margin-bottom: 20px;
+
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    background: linear-gradient(90deg, #ffffff 0%, #67b6aa 100%);
+}
+
+
+
+
+
+@media screen and (max-width:600px) {
+    .answer-section {
+        padding: 10px;
+    }
+
+    .answer-card {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+
+
+}

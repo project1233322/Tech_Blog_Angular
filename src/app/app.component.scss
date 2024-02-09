@@ -4,7 +4,10 @@
 .spacer{
   flex: 1;
 }
-
+.active {
+  background-color: rgba(0, 0, 0, 0.1); /* Set alpha to 0 for full transparency */
+  color: #ffffff; /* Change to your desired text color */
+}
 div {
   mat-toolbar {
     background: linear-gradient(90deg, #222b5c 0%, #80ece7 100%);

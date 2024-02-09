@@ -32,6 +32,32 @@ export class StorageServiceService {
     return true;
   }
 
+  static getUser(): any {
+    const userString = localStorage.getItem(USER);
+  
+    if (userString !== null) {
+      return JSON.parse(userString);
+    }
+  
+    // Handle the case where the user data is not found in localStorage
+    // You can return a default value, throw an error, or handle it as needed.
+    return null;
+  }
+  // static getUser(): any{
+  //   return JSON.parse(localStorage.getItem(USER));
+  // }
+  static getUserId():string{
+    const user = this.getUser();
+    if(user == null ) { return '';}
+    return user.userId;
+  }
+
+  static hasToken():boolean{
+    if(this.getToken()===null)
+      return false;
+    return true;
+  }
+
   static logout(){
     window.localStorage.removeItem(TOKEN);
     window.localStorage.removeItem(USER);

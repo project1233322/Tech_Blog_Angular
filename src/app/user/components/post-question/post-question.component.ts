@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
-import { FormBuilder, FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, FormControl, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +13,8 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router'; // Import the Router
+import { QuestionService } from '../../user-services/question-service/question.service';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-question',
@@ -27,7 +29,9 @@ import { Router } from '@angular/router'; // Import the Router
     ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
+
   ],
   templateUrl: './post-question.component.html',
   styleUrl: './post-question.component.scss'
@@ -38,19 +42,34 @@ export class PostQuestionComponent {
   tags: any[] = [];
   filteredTags!: Observable<string[]>;
   allTags: string[] = ['code', 'java', 'compiler'];
+  postQuestionForm!: FormGroup;
 
   announcer = inject(LiveAnnouncer);
 
   @ViewChild('tagInput')
   tagInput!: ElementRef<HTMLInputElement>;
+  // validateform: any;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router, 
+    private service: QuestionService, 
+    private fb: FormBuilder, 
+    private sb: MatSnackBar
+  ){
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
       map((tag: string | null) => (tag ? this._filter(tag) : this.allTags.slice())),
     );
   }
 
+  ngOnInit(): void {
+    this.postQuestionForm = this.fb.group({
+      title: ['', Validators.required],
+      body: ['', Validators.required],
+      tags: ['', Validators.required]
+    })
+  }
+  //code for tags functionality
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
@@ -81,18 +100,28 @@ export class PostQuestionComponent {
     this.tagCtrl.setValue(null);
   }
 
-  onPostQuestion(): void {
-      // Add your logic for posting the question here
-
-  // If you want to submit the form after additional logic
-  const formElement = document.getElementById('yourFormId') as HTMLFormElement;
-  formElement.submit();
-   
-  }
-
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.allTags.filter(tag => tag.toLowerCase().includes(filterValue));
   }
+
+
+
+  onPostQuestion(): void {
+    console.log(this.postQuestionForm.value);
+    this.service.postQuestion(this.postQuestionForm.value).subscribe((res) => {
+      console.log(res);
+      if (res.id != null) {
+        this.sb.open("Question posted successfully", "Close", { duration: 5000 });
+  
+        // Reset form values and clear tags array
+        this.postQuestionForm.reset();
+        this.tags = [];
+      } else {
+        this.sb.open("Something went wrong", "Close", { duration: 5000 });
+      }
+    });
+  }
+  
 }

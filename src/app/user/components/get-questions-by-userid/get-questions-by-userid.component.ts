@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
+import { QuestionService } from '../../user-services/question-service/question.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator'
-import { CommonModule } from '@angular/common';
-import { QuestionService } from '../../user-services/question-service/question.service';
 import { RouterModule } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-get-questions-by-userid',
   standalone: true,
   imports: [MatCardModule, MatIconModule, MatPaginatorModule,RouterModule, CommonModule, MatChipsModule],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  templateUrl: './get-questions-by-userid.component.html',
+  styleUrl: './get-questions-by-userid.component.scss'
 })
-export class DashboardComponent {
+export class GetQuestionsByUseridComponent {
   questions: any[] = [];
   total!: number;
   pageNum: number = 0;
@@ -30,15 +29,15 @@ export class DashboardComponent {
   }
 
   getAllQuestion() {
-    this.service.getAllQuestion(this.pageNum).subscribe((res)=> {
+    this.service.getQuestionByUserId(this.pageNum).subscribe((res) => {
       console.log(res);
-      
-      this.questions=res.questionDTOs;
-      
-      console.log(this.questions);
-      this.total=res.totalPages*5;
 
-     
+      this.questions = res.questionDTOs;
+
+      console.log(this.questions);
+      this.total = res.totalPages * 5;
+
+
 
     })
   }
@@ -48,6 +47,4 @@ export class DashboardComponent {
 
     this.getAllQuestion();
   }
-
-
 }

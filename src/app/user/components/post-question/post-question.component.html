@@ -2,23 +2,23 @@
     <mat-card class="postQuestion-card">
         <mat-card-content>
             <h2 class="form-caption">Post Query</h2>
-            <form (ngsubmit)="onPostQuestion()">
+            <form (ngsubmit)="onPostQuestion()" [formGroup]="postQuestionForm">
                 <div class="input-div">
                     <mat-form-field>
                         <mat-label>Title</mat-label>
-                        <input matInput placeholder="Title" required>
+                        <input matInput placeholder="Title" name="title" formControlName = "title">
                     </mat-form-field>
                 </div>
                 <div class="input-div">
                     <mat-form-field>
                         <mat-label>Body</mat-label>
-                        <textarea matInput rows="6" placeholder="Body" required></textarea>
+                        <textarea matInput rows="6" placeholder="Body" name="body" required formControlName = "body"></textarea>
                     </mat-form-field>
                 </div>
                 <div class="input-div">
                     <mat-form-field>
                         <mat-label>Tags</mat-label>
-                        <mat-chip-grid #chipGrid aria-label="tag selection">
+                        <mat-chip-grid #chipGrid aria-label="tag selection"  formControlName="tags">
                             @for (tag of tags; track tag) {
                               <mat-chip-row (removed)="remove(tag)">
                                 {{tag}}
@@ -31,7 +31,7 @@
                           <input placeholder="New Tag..." #tagInput [formControl]="tagCtrl"
                             [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                            (matChipInputTokenEnd)="add($event)"/>
+                            (matChipInputTokenEnd)="add($event)" required/>
                           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                             @for (tag of filteredTags | async; track tag) {
                               <mat-option [value]="tag">{{tag}}</mat-option>
@@ -40,7 +40,7 @@
                     </mat-form-field>
                 </div>
                 <div>
-                  <button mat-raised-button color="primary" class="postQuestion-button" type="button" (click)="onPostQuestion()">Post Question</button>
+                  <button mat-raised-button color="primary" class="postQuestion-button" type="button" (click)="onPostQuestion()" [disabled]="postQuestionForm.invalid">Post Question</button>
 
                 </div>
             </form>

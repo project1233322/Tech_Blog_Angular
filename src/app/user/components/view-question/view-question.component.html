@@ -1,1 +1,48 @@
+<div class="question-card" style="margin-top: 30px;">
+    <h2>{{ question.title }}</h2>
+    <p>Asked On: <b>{{ question.createdDate | date: 'EEEE, MMMM d, y' }}</b> by <b>{{ question.username }}</b>
+    </p>
+    <div class="question-body">
+        <p> {{ question.body }}</p>
+        <div class="tag-list">
+            <mat-chip-listbox>
+                <mat-chip *ngFor="let tag of question.tags" color="primary">{{ tag }}</mat-chip>
+            </mat-chip-listbox>
+        </div>
+    </div>
+</div>
 
+<div class="answer-card">
+    <h2>Answers</h2>
+    <div *ngFor="let answer of answers; let i = index;">
+        <div>
+            <div>
+                <h5>Answerd by: <b>{{ answer.username }}</b> - Answered on: <b>{{ answer.createdDate | date: 'MMM d, y,h:mma' }}</b></h5>
+                <p>{{ answer.body }}</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<div class="answer-section" style="margin-top: 30px;">
+    <div>
+        <div>
+            <h2>Answer</h2>
+        </div>
+
+        <form [formGroup]="validateForm" (ngSubmit)="addAnswer()">
+            <div class="form-field">
+                <mat-form-field appearance="fill" class="textarea-wrapper">
+                    <mat-label>add your answer</mat-label>
+                    <textarea matInput rows="3" placeholder="Solution...." formControlName="body"
+                        class="area"></textarea>
+                </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="accent" [disabled]="validateForm.invalid">Post Your Answer</button>
+        </form>
+    </div>
+</div>

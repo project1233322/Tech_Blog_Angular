@@ -17,14 +17,17 @@
 }
 .child {
     margin-bottom: 40px;
-
+    border: 1px solid rgba(0, 0, 0, 0.1); 
     border-radius: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
     padding: 20px;
-    
 }
 
-
+.radio{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
 .container{
     min-height: 91vh;
     padding: 30px;

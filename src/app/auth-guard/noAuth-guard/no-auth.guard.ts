@@ -1,16 +1,24 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
+import { StorageServiceService } from "../../service/storage-service/storage-service.service";
+
 
 @Injectable({
   providedIn:'root'
 })
-export class noAuthGuard  implements CanActivate{
+export class NoAuthGuard implements CanActivate{
 
-  constructor(private router:Router){}
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot
-    ): boolean   | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    throw new Error("Method not implemented.");
-  }
+  constructor(private route:Router){}
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot
+    ): boolean {
+      if(StorageServiceService.hasToken())
+      {
+        this.route.navigate(['/user/dashboard']);
+        return false;
+      }
+      return true;
+    } 
   
 }

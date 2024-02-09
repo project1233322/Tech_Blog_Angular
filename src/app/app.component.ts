@@ -71,7 +71,7 @@ export class AppComponent {
   {
     StorageServiceService.logout();
     this.router.navigate(['']);
-    this.snackBar.open("Signed Out Successfully",'Close',{duration:5000});
+    this.snackBar.open("Signed Out Successfully",'Close',{duration:2000});
   }
   
 }
